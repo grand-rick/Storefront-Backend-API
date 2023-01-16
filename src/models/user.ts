@@ -1,6 +1,7 @@
 import db from '../database';
 import bcrypt from 'bcrypt';
 import dotenv from 'dotenv';
+import jwt from 'jsonwebtoken';
 
 dotenv.config();
 
@@ -86,6 +87,29 @@ export default class UserStore {
 			return deleted;
 		} catch (err) {
 			throw new Error(`Unable to delete user. Error ${err}`);
+		}
+	}
+
+	async authenticate(name: string, password: string): Promise<User | null> {
+		const sql = 'SELECT * FROM users WHERE name = $1';
+
+		try {
+			const conn = await db.connect();
+			const result = await conn.query(sql, [name]);
+			conn.release();
+			if (result.rows.length) {
+				const user = result.rows[0];
+				const isPasswordValid = bcrypt.compareSync(
+					`${password}${pepper}`,
+					user.hash_password
+				);
+				if (isPasswordValid) {
+					return user;
+				}
+			}
+			return null;
+		} catch (err) {
+			throw new Error(`Unable to authenticate. Error ${err}`);
 		}
 	}
 }
