@@ -1,7 +1,6 @@
 import db from '../database';
 import bcrypt from 'bcrypt';
 import dotenv from 'dotenv';
-import jwt from 'jsonwebtoken';
 
 dotenv.config();
 
@@ -10,7 +9,8 @@ const saltRounds = process.env.SALT_ROUNDS as unknown as string;
 
 export type User = {
 	id?: string | number;
-	name: string;
+	firstName: string;
+	lastName: string;
 	password: string;
 };
 
@@ -31,13 +31,17 @@ export default class UserStore {
 	async create(u: User): Promise<User> {
 		try {
 			const sql =
-				'INSERT INTO users (name, hash_password) VALUES ($1, $2) RETURNING *';
+				'INSERT INTO users (first_name, last_name, hash_password) VALUES ($1, $2, $3) RETURNING *';
 			const hash = bcrypt.hashSync(
 				`${u.password}${pepper}`,
 				parseInt(saltRounds)
 			);
 			const conn = await db.connect();
-			const result = await conn.query(sql, [u.name, hash]);
+			const result = await conn.query(sql, [
+				u.firstName,
+				u.lastName,
+				hash,
+			]);
 			conn.release();
 			const newUser = result.rows[0];
 			return newUser;
@@ -49,13 +53,18 @@ export default class UserStore {
 	async update(u: User): Promise<User> {
 		try {
 			const sql =
-				'UPDATE users SET name = $2, hash_password = $3 WHERE id = $1';
+				'UPDATE users SET first_name = $2, last_name = $3 hash_password = $4 WHERE id = $1';
 			const hash = bcrypt.hashSync(
 				`${u.password}${pepper}`,
 				parseInt(saltRounds)
 			);
 			const conn = await db.connect();
-			const result = await conn.query(sql, [u.id, u.name, hash]);
+			const result = await conn.query(sql, [
+				u.id,
+				u.firstName,
+				u.lastName,
+				hash,
+			]);
 			conn.release();
 			const updatedUser = result.rows[0];
 			return updatedUser;

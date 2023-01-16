@@ -20,7 +20,8 @@ const index = async (_req: Request, res: Response) => {
 
 const create = async (req: Request, res: Response) => {
 	const user1: User = {
-		name: req.body.name,
+		firstName: req.body.firstName,
+		lastName: req.body.lastName,
 		password: req.body.password,
 	};
 	try {
@@ -46,7 +47,8 @@ const show = async (req: Request, res: Response) => {
 const update = async (req: Request, res: Response) => {
 	const user1: User = {
 		id: req.params.id,
-		name: req.body.name,
+		firstName: req.body.firstName,
+		lastName: req.body.lastName,
 		password: req.body.password,
 	};
 	try {
@@ -74,7 +76,8 @@ const authenticate = async (req: Request, res: Response) => {
 	const password = req.body.password;
 	try {
 		const isUserAuthenticated = await store.authenticate(name, password);
-		const result = isUserAuthenticated || 'User does not exist or password is invalid';
+		const result =
+			isUserAuthenticated || 'User does not exist or password is invalid';
 		res.json(result);
 	} catch (err) {
 		res.status(400);
@@ -101,8 +104,8 @@ export const verifyAuthToken = async (
 };
 
 const usersRoutes = (app: express.Application) => {
-	app.post('/signup', create);
-	app.get('/login', authenticate);
+	app.post('/create', verifyAuthToken, create);
+	app.get('/auth', authenticate);
 	app.get('/users', verifyAuthToken, index);
 	app.get('/users/:id', verifyAuthToken, show);
 	app.put('/users/:id', verifyAuthToken, update);
