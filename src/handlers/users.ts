@@ -76,3 +76,5 @@ const usersRoutes = (app: express.Application) => {
     app.put('/users/:id', update);
     app.delete('/users/:id', destroy);
 }
+
+export default usersRoutes;

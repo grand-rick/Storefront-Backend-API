@@ -2,6 +2,7 @@ import express, { Request, Response } from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
+import usersRoutes from './handlers/users';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -16,6 +17,8 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(morgan('common'));
 app.use(bodyParser.json());
+
+usersRoutes(app);
 
 app.get('/', (req: Request, res: Response) => {
 	res.json('This is the Homepage');
