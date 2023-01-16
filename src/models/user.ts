@@ -52,7 +52,7 @@ export default class UserStore {
                 parseInt(saltRounds)
             );
             const conn = await db.connect();
-            const result = await conn.query(sql, [u.name, hash]);
+            const result = await conn.query(sql, [u.id, u.name, hash]);
             conn.release();
             const updatedUser = result.rows[0];
             return updatedUser;
