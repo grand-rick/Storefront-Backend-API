@@ -3,9 +3,9 @@ import db from '../database';
 export type Order = {
 	id?: string | number;
 	status: string;
-	productQuantity: string;
-	productId: string;
-	userId: string;
+	product_quantity: string;
+	product_id: string | number;
+	user_id: string | number;
 };
 
 export default class OrderStore {
@@ -29,9 +29,9 @@ export default class OrderStore {
 			const conn = await db.connect();
 			const result = await conn.query(sql, [
 				u.status,
-				u.productQuantity,
-				u.productId,
-				u.userId,
+				u.product_quantity,
+				u.product_id,
+				u.user_id,
 			]);
 			conn.release();
 			const newOrder = result.rows[0];
@@ -51,6 +51,18 @@ export default class OrderStore {
 			return order;
 		} catch (err) {
 			throw new Error(`Unable to show order. Error ${err}`);
+		}
+	}
+	async delete(id: string): Promise<Order> {
+		try {
+			const sql = 'DELETE FROM orders WHERE id = $1';
+			const conn = await db.connect();
+			const result = await conn.query(sql, [id]);
+			conn.release();
+			const order = result.rows[0];
+			return order;
+		} catch (err) {
+			throw new Error(`Unable to delete order. Error ${err}`);
 		}
 	}
 }

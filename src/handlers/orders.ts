@@ -17,9 +17,9 @@ const index = async (_req: Request, res: Response) => {
 const create = async (req: Request, res: Response) => {
 	const order1: Order = {
 		status: req.body.status,
-		productQuantity: req.body.productQuantity,
-		productId: req.body.productId,
-		userId: req.body.userId,
+		product_quantity: req.body.productQuantity,
+		product_id: req.body.productId,
+		user_id: req.body.userId,
 	};
 	try {
 		const newOrder = await store.create(order1);
@@ -40,10 +40,21 @@ const show = async (req: Request, res: Response) => {
 	}
 };
 
+const destroy = async (req: Request, res: Response) => {
+	try {
+		const deleted = await store.delete(req.params.id);
+		res.json(deleted);
+	} catch (err) {
+		res.status(400);
+		res.json(err);
+	}
+};
+
 const ordersRoutes = (app: express.Application) => {
 	app.post('/orders', verifyAuthToken, create);
 	app.get('/orders', index);
 	app.get('/orders/:id', show);
+	app.delete('/orders/:id', destroy);
 };
 
 export default ordersRoutes;
