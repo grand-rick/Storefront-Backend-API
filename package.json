@@ -10,8 +10,8 @@
     "build": "npx tsc",
     "start": "nodemon src/server.ts",
     "jasmine": "jasmine",
-    "test": "ENV=test && npx tsc && db-migrate --env test up && jasmine && db-migrate db:drop test",
-    "delTestDB": "ENV=test && db-migrate --env test reset"
+    "delTestDB": "ENV=test && db-migrate --env test reset",
+    "test": "npm run delTestDB && ENV=test && npx tsc && db-migrate --env test up && jasmine && db-migrate db:drop test"
   },
   "keywords": [],
   "author": "",
