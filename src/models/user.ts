@@ -11,7 +11,8 @@ export type User = {
 	id?: string | number;
 	first_name: string;
 	last_name: string;
-	password: string;
+	username: string;
+	hash_password: string;
 };
 
 export default class UserStore {
@@ -31,15 +32,16 @@ export default class UserStore {
 	async create(u: User): Promise<User> {
 		try {
 			const sql =
-				'INSERT INTO users (first_name, last_name, hash_password) VALUES ($1, $2, $3) RETURNING *';
+				'INSERT INTO users (first_name, last_name, username, hash_password) VALUES ($1, $2, $3, $4) RETURNING *';
 			const hash = bcrypt.hashSync(
-				`${u.password}${pepper}`,
+				`${u.hash_password}${pepper}`,
 				parseInt(saltRounds)
 			);
 			const conn = await db.connect();
 			const result = await conn.query(sql, [
 				u.first_name,
 				u.last_name,
+				u.username,
 				hash,
 			]);
 			conn.release();
@@ -76,12 +78,12 @@ export default class UserStore {
 		}
 	}
 
-	async authenticate(name: string, password: string): Promise<User | null> {
-		const sql = 'SELECT * FROM users WHERE name = $1';
+	async authenticate(username: string, password: string): Promise<User | null> {
+		const sql = 'SELECT * FROM users WHERE username = $1';
 
 		try {
 			const conn = await db.connect();
-			const result = await conn.query(sql, [name]);
+			const result = await conn.query(sql, [username]);
 			conn.release();
 			if (result.rows.length) {
 				const user = result.rows[0];

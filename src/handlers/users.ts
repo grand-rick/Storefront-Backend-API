@@ -22,7 +22,8 @@ const create = async (req: Request, res: Response) => {
 	const user1: User = {
 		first_name: req.body.firstName,
 		last_name: req.body.lastName,
-		password: req.body.password,
+		username: req.body.username,
+		hash_password: req.body.password,
 	};
 	try {
 		const newUser = await store.create(user1);
@@ -55,10 +56,10 @@ const destroy = async (req: Request, res: Response) => {
 };
 
 const authenticate = async (req: Request, res: Response) => {
-	const name = req.body.name;
+	const username = req.body.username;
 	const password = req.body.password;
 	try {
-		const isUserAuthenticated = await store.authenticate(name, password);
+		const isUserAuthenticated = await store.authenticate(username, password);
 		const result =
 			isUserAuthenticated || 'User does not exist or password is invalid';
 		res.json(result);
