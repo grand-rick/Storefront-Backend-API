@@ -11,7 +11,7 @@ const {
 	POSTGRES_PASSWORD,
 	ENV,
 } = process.env;
-
+console.log(ENV);
 let db = new Pool({
 	host: POSTGRES_HOST,
 	database: POSTGRES_TEST_DB,
