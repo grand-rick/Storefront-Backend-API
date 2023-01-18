@@ -9,7 +9,9 @@
     "prettier": "prettier --config .prettierrc 'src/**/*.ts' --write",
     "build": "npx tsc",
     "start": "nodemon src/server.ts",
-    "jasmine": "jasmine"
+    "jasmine": "jasmine",
+    "test": "ENV=test && npx tsc && db-migrate --env test up && jasmine && db-migrate db:drop test",
+    "delTestDB": "db-migrate --env test reset"
   },
   "keywords": [],
   "author": "",
