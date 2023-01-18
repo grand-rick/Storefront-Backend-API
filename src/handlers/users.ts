@@ -20,8 +20,8 @@ const index = async (_req: Request, res: Response) => {
 
 const create = async (req: Request, res: Response) => {
 	const user1: User = {
-		firstName: req.body.firstName,
-		lastName: req.body.lastName,
+		first_name: req.body.firstName,
+		last_name: req.body.lastName,
 		password: req.body.password,
 	};
 	try {
@@ -38,23 +38,6 @@ const show = async (req: Request, res: Response) => {
 	try {
 		const user = await store.show(req.params.id);
 		res.json(user);
-	} catch (err) {
-		res.status(400);
-		res.json(err);
-	}
-};
-
-const update = async (req: Request, res: Response) => {
-	const user1: User = {
-		id: req.params.id,
-		firstName: req.body.firstName,
-		lastName: req.body.lastName,
-		password: req.body.password,
-	};
-	try {
-		const updatedUser = await store.update(user1);
-		const token = jwt.sign({ user: updatedUser }, TOKEN_SECRET);
-		res.json(token);
 	} catch (err) {
 		res.status(400);
 		res.json(err);
@@ -108,7 +91,6 @@ const usersRoutes = (app: express.Application) => {
 	app.get('/auth', authenticate);
 	app.get('/users', verifyAuthToken, index);
 	app.get('/users/:id', verifyAuthToken, show);
-	app.put('/users/:id', verifyAuthToken, update);
 	app.delete('/users/:id', verifyAuthToken, destroy);
 };
 

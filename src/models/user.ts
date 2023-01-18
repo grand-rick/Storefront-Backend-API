@@ -9,8 +9,8 @@ const saltRounds = process.env.SALT_ROUNDS as unknown as string;
 
 export type User = {
 	id?: string | number;
-	firstName: string;
-	lastName: string;
+	first_name: string;
+	last_name: string;
 	password: string;
 };
 
@@ -38,36 +38,13 @@ export default class UserStore {
 			);
 			const conn = await db.connect();
 			const result = await conn.query(sql, [
-				u.firstName,
-				u.lastName,
+				u.first_name,
+				u.last_name,
 				hash,
 			]);
 			conn.release();
 			const newUser = result.rows[0];
 			return newUser;
-		} catch (err) {
-			throw new Error(`Unable to create user. Error ${err}`);
-		}
-	}
-
-	async update(u: User): Promise<User> {
-		try {
-			const sql =
-				'UPDATE users SET first_name = $2, last_name = $3 hash_password = $4 WHERE id = $1';
-			const hash = bcrypt.hashSync(
-				`${u.password}${pepper}`,
-				parseInt(saltRounds)
-			);
-			const conn = await db.connect();
-			const result = await conn.query(sql, [
-				u.id,
-				u.firstName,
-				u.lastName,
-				hash,
-			]);
-			conn.release();
-			const updatedUser = result.rows[0];
-			return updatedUser;
 		} catch (err) {
 			throw new Error(`Unable to create user. Error ${err}`);
 		}
