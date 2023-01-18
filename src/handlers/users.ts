@@ -88,7 +88,7 @@ export const verifyAuthToken = async (
 };
 
 const usersRoutes = (app: express.Application) => {
-	app.post('/create', verifyAuthToken, create);
+	app.post('/users', verifyAuthToken, create);
 	app.get('/auth', authenticate);
 	app.get('/users', verifyAuthToken, index);
 	app.get('/users/:id', verifyAuthToken, show);
