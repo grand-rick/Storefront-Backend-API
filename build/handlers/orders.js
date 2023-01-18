@@ -69,9 +69,9 @@ var create = function (req, res) { return __awaiter(void 0, void 0, void 0, func
             case 0:
                 order1 = {
                     status: req.body.status,
-                    productQuantity: req.body.productQuantity,
-                    productId: req.body.productId,
-                    userId: req.body.userId,
+                    product_quantity: req.body.productQuantity,
+                    product_id: req.body.productId,
+                    user_id: req.body.userId,
                 };
                 _a.label = 1;
             case 1:
@@ -110,9 +110,30 @@ var show = function (req, res) { return __awaiter(void 0, void 0, void 0, functi
         }
     });
 }); };
+var destroy = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var deleted, err_4;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                return [4 /*yield*/, store.delete(req.params.id)];
+            case 1:
+                deleted = _a.sent();
+                res.json(deleted);
+                return [3 /*break*/, 3];
+            case 2:
+                err_4 = _a.sent();
+                res.status(400);
+                res.json(err_4);
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
+        }
+    });
+}); };
 var ordersRoutes = function (app) {
     app.post('/orders', users_1.verifyAuthToken, create);
     app.get('/orders', index);
     app.get('/orders/:id', show);
+    app.delete('/orders/:id', destroy);
 };
 exports.default = ordersRoutes;

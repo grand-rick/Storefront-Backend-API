@@ -81,9 +81,9 @@ var OrderStore = /** @class */ (function () {
                         conn = _a.sent();
                         return [4 /*yield*/, conn.query(sql, [
                                 u.status,
-                                u.productQuantity,
-                                u.productId,
-                                u.userId,
+                                u.product_quantity,
+                                u.product_id,
+                                u.user_id,
                             ])];
                     case 2:
                         result = _a.sent();
@@ -118,6 +118,31 @@ var OrderStore = /** @class */ (function () {
                     case 3:
                         err_3 = _a.sent();
                         throw new Error("Unable to show order. Error ".concat(err_3));
+                    case 4: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    OrderStore.prototype.delete = function (id) {
+        return __awaiter(this, void 0, void 0, function () {
+            var sql, conn, result, order, err_4;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 3, , 4]);
+                        sql = 'DELETE FROM orders WHERE id = $1';
+                        return [4 /*yield*/, database_1.default.connect()];
+                    case 1:
+                        conn = _a.sent();
+                        return [4 /*yield*/, conn.query(sql, [id])];
+                    case 2:
+                        result = _a.sent();
+                        conn.release();
+                        order = result.rows[0];
+                        return [2 /*return*/, order];
+                    case 3:
+                        err_4 = _a.sent();
+                        throw new Error("Unable to delete order. Error ".concat(err_4));
                     case 4: return [2 /*return*/];
                 }
             });
