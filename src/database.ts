@@ -11,13 +11,10 @@ const {
 	POSTGRES_PASSWORD,
 	ENV,
 } = process.env;
+
 console.log(ENV);
-let db = new Pool({
-	host: POSTGRES_HOST,
-	database: POSTGRES_TEST_DB,
-	user: POSTGRES_USER,
-	password: POSTGRES_PASSWORD,
-});
+
+let db: Pool = new Pool();
 
 if (ENV === 'test') {
 	db = new Pool({
