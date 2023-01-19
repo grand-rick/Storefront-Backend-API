@@ -7,9 +7,9 @@ declare global {
         POSTGRES_USER: string;
         POSTGRES_PASSWORD: string;
         BCRYPT_PASSWORD: string;
-        SALT_ROUNDS: number;
+        SALT_ROUNDS: string;
         TOKEN_SECRET: string;
-        PORT: number;
+        PORT: string;
         ENV: string;
       }
     }
