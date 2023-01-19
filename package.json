@@ -8,7 +8,7 @@
     "lint:fix": "eslint . --ext .ts --fix",
     "prettier": "prettier --config .prettierrc 'src/**/*.ts' --write",
     "build": "rm -rf ./build/** && npx tsc",
-    "start": "nodemon src/server.ts",
+    "start": "ENV=dev && nodemon src/server.ts",
     "jasmine": "jasmine",
     "delTestDB": "ENV=test && db-migrate --env test reset",
     "test": "npm run delTestDB && ENV=test && npm run build && db-migrate --env test up && jasmine && db-migrate db:drop test"
