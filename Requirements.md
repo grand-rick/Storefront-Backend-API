@@ -8,7 +8,7 @@ These are the notes from a meeting with the frontend developer that describe wha
 - Index 
 - Show
 - Create [token required]
-- [OPTIONAL] Top 5 most popular products 
+- [OPTIONAL] Products in sorted by the order id
 
 #### Users
 - Index [token required]
@@ -17,7 +17,8 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 #### Orders
 - Current Order by user (args: user id)[token required]
-- [OPTIONAL] Completed Orders by user (args: user id)[token required]
+- All orders by users [token required]
+- [OPTIONAL] All Active orders by user [token required]
 
 ## Data Shapes
 #### Product
