@@ -19,7 +19,7 @@ describe('Product Model', () => {
 		expect(store.delete).toBeDefined();
 	});
 
-	it('create method should add a book', async () => {
+	it('create method should add a product', async () => {
 		const result: Product = await store.create({
 			name: 'Bridge',
 			price: '250'
@@ -31,7 +31,7 @@ describe('Product Model', () => {
 		});
 	});
 
-	it('index method should return a list of books', async () => {
+	it('index method should return a list of products', async () => {
 		const result = await store.index();
 		expect(result).toEqual([
 			{
