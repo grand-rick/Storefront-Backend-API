@@ -50,11 +50,29 @@ const destroy = async (req: Request, res: Response) => {
 	}
 };
 
+const addProduct = async (req: Request, res: Response) => {
+	const quantity = req.body.quantity;
+	const orderId = req.body.orderId;
+	const productId = req.body.productId;
+	try {
+		const newProduct = await store.addProduct(quantity, orderId, productId);
+        if (newProduct === null) {
+            res.json('Order is closed.');
+            return;
+        }
+		res.json(newProduct);
+	} catch (err) {
+		res.status(400);
+		res.json(err);
+	}
+};
+
 const ordersRoutes = (app: express.Application) => {
 	app.post('/orders', verifyAuthToken, create);
 	app.get('/orders', index);
 	app.get('/orders/:id', show);
 	app.delete('/orders/:id', destroy);
+	app.post('/orders/:id/products', addProduct);
 };
 
 export default ordersRoutes;
