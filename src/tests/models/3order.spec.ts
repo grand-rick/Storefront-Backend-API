@@ -33,18 +33,18 @@ describe('Order Model', () => {
 		const order1: Order = {
 			status: 'active',
 			product_quantity: '50',
-			product_id: '2',
-			user_id: '3',
+			product_id: '4',
+			user_id: '4',
 		};
 		const user = await user_store.create(user1);
 		const product = await product_store.create(product1);
 		const newOrder: Order = await store.create(order1);
 		expect(newOrder).toEqual({
-			id: 1,
+			id: 2,
 			status: 'active',
 			product_quantity: '50',
-			product_id: 2,
-			user_id: 3,
+			product_id: 4,
+			user_id: 4,
 		});
 	});
 
@@ -52,30 +52,32 @@ describe('Order Model', () => {
 		const result = await store.index();
 		expect(result).toEqual([
 			{
-				id: 1,
+				id: 2,
 				status: 'active',
 				product_quantity: '50',
-				product_id: 2,
-				user_id: 3,
+				product_id: 4,
+				user_id: 4,
 			},
 		]);
 	});
 
 	it('show method should return the correct order', async () => {
-		const result = await store.show('1');
+		const result = await store.show('2');
 		expect(result).toEqual({
-			id: 1,
+			id: 2,
 			status: 'active',
 			product_quantity: '50',
-			product_id: 2,
-			user_id: 3,
+			product_id: 4,
+			user_id: 4,
 		});
 	});
 
 	it('delete method should remove the order', async () => {
-		await user_store.delete('1');
+		// Removing the user and product created in testing the create method
+		await user_store.delete('2');
 		await product_store.delete('1');
-		await store.delete('1');
+
+		await store.delete('2');
 		const result = await store.index();
 		expect(result).toEqual([]);
 	});
