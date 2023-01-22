@@ -78,7 +78,10 @@ export default class UserStore {
 		}
 	}
 
-	async authenticate(username: string, password: string): Promise<User | null> {
+	async authenticate(
+		username: string,
+		password: string
+	): Promise<User | null> {
 		const sql = 'SELECT * FROM users WHERE username = $1';
 
 		try {

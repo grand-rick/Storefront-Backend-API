@@ -1,7 +1,6 @@
 import express, { Request, Response } from 'express';
 import ProductStore, { Product } from '../models/product';
 import { verifyAuthToken } from './users';
-import dotenv from 'dotenv';
 
 const store = new ProductStore();
 

@@ -1,4 +1,4 @@
-import UserStore, { User } from '../user';
+import UserStore, { User } from '../../models/user';
 
 const store = new UserStore();
 
@@ -23,8 +23,8 @@ describe('User Model', () => {
 		const result: User = await store.create({
 			first_name: 'Some',
 			last_name: 'Name',
-            username: 'Test User',
-            hash_password: 'randomPassword'
+			username: 'Test User',
+			hash_password: 'randomPassword',
 		});
 		expect(result).toBeDefined();
 	});
@@ -35,12 +35,12 @@ describe('User Model', () => {
 	});
 
 	it('show method should return the correct user', async () => {
-		const result = await store.show('1');
+		const result = await store.show('2');
 		expect(result).toBeDefined();
 	});
 
 	it('delete method should remove the user', async () => {
-		await store.delete('1');
+		await store.delete('2');
 		const result = await store.index();
 		expect(result).toEqual([]);
 	});

@@ -56,10 +56,10 @@ const addProduct = async (req: Request, res: Response) => {
 	const productId = req.body.productId;
 	try {
 		const newProduct = await store.addProduct(quantity, orderId, productId);
-        if (newProduct === null) {
-            res.json('Order is closed.');
-            return;
-        }
+		if (newProduct === null) {
+			res.json('Order is closed.');
+			return;
+		}
 		res.json(newProduct);
 	} catch (err) {
 		res.status(400);

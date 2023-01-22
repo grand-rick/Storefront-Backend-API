@@ -20,9 +20,9 @@ export default class DashboardQueries {
 		}
 	}
 
-    // It returns the top five most expensive products in the database
-    async topFiveExpensiveProducts(): Promise<
-		{ name: string; price: number;}[]
+	// It returns the top five most expensive products in the database
+	async topFiveExpensiveProducts(): Promise<
+		{ name: string; price: number }[]
 	> {
 		try {
 			const conn = await db.connect();
@@ -39,15 +39,15 @@ export default class DashboardQueries {
 		}
 	}
 
-    // We're getting all the users who have completed orders
-    async usersWithActiveOrders(): Promise<
+	// We're getting all the users who have completed orders
+	async usersWithActiveOrders(): Promise<
 		{ username: string; order_id: string }[]
 	> {
 		try {
 			const conn = await db.connect();
 			const sql =
 				'SELECT username, order_id FROM users INNER JOIN orders ON users.id = orders.user_id INNER JOIN order_products ON orders.id = order_products.order_id WHERE orders.status = $1';
-            const statusOfOrder = 'active';
+			const statusOfOrder = 'active';
 			const result = await conn.query(sql, [statusOfOrder]);
 
 			conn.release();

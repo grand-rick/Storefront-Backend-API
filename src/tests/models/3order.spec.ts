@@ -1,6 +1,6 @@
-import OrderStore, { Order } from '../order';
-import ProductStore, { Product } from '../product';
-import UserStore, { User } from '../user';
+import OrderStore, { Order } from '../../models/order';
+import ProductStore, { Product } from '../../models/product';
+import UserStore, { User } from '../../models/user';
 
 const store = new OrderStore();
 const user_store = new UserStore();
@@ -20,31 +20,31 @@ describe('Order Model', () => {
 	});
 
 	it('create method should add an order', async () => {
-        const user1: User = {
-            first_name: 'Some',
+		const user1: User = {
+			first_name: 'Some',
 			last_name: 'Name',
-            username: 'Test User',
-            hash_password: 'randomPassword'
-        };
-        const product1: Product = {
-            name: 'Bed',
-            price: '500'
-        }
+			username: 'Test User',
+			hash_password: 'randomPassword',
+		};
+		const product1: Product = {
+			name: 'Bed',
+			price: '500',
+		};
 		const order1: Order = {
 			status: 'active',
-            product_quantity: '50',
-            product_id: '2',
-            user_id: '2'
-		}
-        const user = await user_store.create(user1);
-        const product = await product_store.create(product1);
+			product_quantity: '50',
+			product_id: '2',
+			user_id: '3',
+		};
+		const user = await user_store.create(user1);
+		const product = await product_store.create(product1);
 		const newOrder: Order = await store.create(order1);
 		expect(newOrder).toEqual({
 			id: 1,
 			status: 'active',
-            product_quantity: '50',
-            product_id: 2,
-            user_id: 2
+			product_quantity: '50',
+			product_id: 2,
+			user_id: 3,
 		});
 	});
 
@@ -54,10 +54,10 @@ describe('Order Model', () => {
 			{
 				id: 1,
 				status: 'active',
-                product_quantity: '50',
+				product_quantity: '50',
 				product_id: 2,
-				user_id: 2
-			}
+				user_id: 3,
+			},
 		]);
 	});
 
@@ -66,9 +66,9 @@ describe('Order Model', () => {
 		expect(result).toEqual({
 			id: 1,
 			status: 'active',
-            product_quantity: '50',
-            product_id: 2,
-            user_id: 2
+			product_quantity: '50',
+			product_id: 2,
+			user_id: 3,
 		});
 	});
 

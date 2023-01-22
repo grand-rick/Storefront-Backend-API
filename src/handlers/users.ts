@@ -6,7 +6,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const store = new UserStore();
-const TOKEN_SECRET = process.env.TOKEN_SECRET as unknown as string;
+const TOKEN_SECRET = process.env.TOKEN_SECRET;
 
 const index = async (_req: Request, res: Response) => {
 	try {
@@ -59,7 +59,10 @@ const authenticate = async (req: Request, res: Response) => {
 	const username = req.body.username;
 	const password = req.body.password;
 	try {
-		const isUserAuthenticated = await store.authenticate(username, password);
+		const isUserAuthenticated = await store.authenticate(
+			username,
+			password
+		);
 		const result =
 			isUserAuthenticated || 'User does not exist or password is invalid';
 		res.json(result);

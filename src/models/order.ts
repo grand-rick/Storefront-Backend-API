@@ -73,24 +73,26 @@ export default class OrderStore {
 	): Promise<Order | null> {
 		try {
 			const conn = await db.connect();
-            const getOrderStatusSql = 'SELECT status FROM orders WHERE id = $1';
+			const getOrderStatusSql = 'SELECT status FROM orders WHERE id = $1';
 
-            const checkOrderStatusResult = await conn.query(getOrderStatusSql, [orderId]);
+			const checkOrderStatusResult = await conn.query(getOrderStatusSql, [
+				orderId,
+			]);
 
-            const orderStatus = checkOrderStatusResult.rows[0].status;
+			const orderStatus = checkOrderStatusResult.rows[0].status;
 
-            if (orderStatus === 'active') {
-                const sql =
-				'INSERT INTO order_products (quantity, order_id, product_id) VALUES ($1, $2, $3) RETURNING *';
-                const result = await conn.query(sql, [
-                    quantity,
-                    orderId,
-                    productId,
-                ]);
-			    conn.release();
-                const addedProduct = result.rows[0];
-			    return addedProduct;
-            }
+			if (orderStatus === 'active') {
+				const sql =
+					'INSERT INTO order_products (quantity, order_id, product_id) VALUES ($1, $2, $3) RETURNING *';
+				const result = await conn.query(sql, [
+					quantity,
+					orderId,
+					productId,
+				]);
+				conn.release();
+				const addedProduct = result.rows[0];
+				return addedProduct;
+			}
 			return null;
 		} catch (err) {
 			throw new Error(`Unable to add new Order. Error${err}`);
