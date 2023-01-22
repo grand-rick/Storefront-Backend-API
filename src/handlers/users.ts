@@ -6,7 +6,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const store = new UserStore();
-const TOKEN_SECRET = process.env.TOKEN_SECRET;
+const TOKEN_SECRET = process.env.TOKEN_SECRET as unknown as string;
 
 const index = async (_req: Request, res: Response) => {
 	try {
@@ -91,7 +91,7 @@ export const verifyAuthToken = async (
 };
 
 const usersRoutes = (app: express.Application) => {
-	app.post('/users', verifyAuthToken, create);
+	app.post('/users', create);
 	app.get('/auth', authenticate);
 	app.get('/users', verifyAuthToken, index);
 	app.get('/users/:id', verifyAuthToken, show);
