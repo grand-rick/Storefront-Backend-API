@@ -33,7 +33,7 @@ To use the API, follow the steps below.
             ```
 1. The `tsconfig.json`, `eslint.json` and `.prettierrc` are already configured for you. Don't worry about that.
 
-1. The port is `3000`
+1. The port is `5000`
 
 1. **Creating user**
     ```postgres
