@@ -8,7 +8,8 @@ These are the notes from a meeting with the frontend developer that describe wha
 - Index 
 - Show
 - Create [token required]
-- [OPTIONAL] Products in sorted by the order id
+- Delete [token required]
+<!-- - [OPTIONAL] Products in sorted by the order id -->
 
 #### Users
 - Index [token required]
@@ -16,9 +17,10 @@ These are the notes from a meeting with the frontend developer that describe wha
 - Create N[token required]
 
 #### Orders
+- Delete [token required]
 - Current Order by user (args: user id)[token required]
 - All orders by users [token required]
-- [OPTIONAL] All Active orders by user [token required]
+<!-- - [OPTIONAL] All Active orders by user [token required] -->
 
 ## Data Shapes
 #### Product
@@ -56,3 +58,5 @@ These are the notes from a meeting with the frontend developer that describe wha
 | GET    | `/products_in_orders`                        | Displays all the products in the orders sorted by the order id  |
 | GET    | `/expensive_products`                        | Displays the top five most expensive orders, from most expensive|
 | GET    | `/users_with_active_orders`                  | Displays all users whose orders are active                      |
+| POST   | `/orders/:id/products`                       | Tracks all the products and the quantities that have their orders active|
+| DELETE   | `/orders/:id/products`                       | Deletes all the products and the quantities that have their orders active, using the product id in the request body|
