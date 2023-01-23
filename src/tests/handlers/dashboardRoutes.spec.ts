@@ -4,7 +4,7 @@ import token from './1orders.spec';
 
 const request = supertest(app);
 
-describe("Testing the dashboard routes handler functions", () => {
+describe('Testing the dashboard routes handler functions', () => {
 	it(`GET /products_in_orders should show all products in sorted by first order`, async () => {
 		const response = await request
 			.get('/products_in_orders')

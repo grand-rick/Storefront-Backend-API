@@ -56,7 +56,7 @@ describe("Testing the user model's route-handler functions", () => {
 		await request
 			.delete('/users/1')
 			.set('Authorization', `Bearer ${orderToken}`);
-			
+
 		const response = await request
 			.delete('/users/2')
 			.set('Authorization', `Bearer ${token}`);

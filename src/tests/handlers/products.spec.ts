@@ -9,8 +9,8 @@ describe("Testing the product model's route-handler functions", () => {
 	it(`POST /products should add a new product`, async () => {
 		const product: Product = {
 			name: 'Labelled Hat',
-			price: '350'
-		}
+			price: '350',
+		};
 		const response = await request
 			.post('/products')
 			.set('Authorization', `Bearer ${orderToken}`)
