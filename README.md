@@ -1,5 +1,5 @@
 # Storefront Backend API
-> ## Project two of my Udacity nano degree
+## Project two of my Udaciaty nano degree
 
 ## **🤯Introduction**
 * This is is an API built specifically for a store. It has been built using a postgres database, using express for server-side rendering and node as the javascript run time.
@@ -40,11 +40,6 @@ To use the API, follow the steps below.
             npm i -D typescript ts-node tsc-watch prettier jasmine-ts eslint-plugin-prettier eslint-config-prettier eslint @types/node @types/bcrypt @types/body-parser @types/cors @types/express @types/jasmine @types/jsonwebtoken @types/morgan @types/nodemon @types/pg @typescript-eslint/eslint-plugin @typescript-eslint/parser
             ```
 1. The `tsconfig.json`, `eslint.json` and `.prettierrc` are already configured for you. Don't worry about that.
-1. Run the following command, this is to set up your environment variables.
-    ```bash
-    cp .env.example .env
-    ```
-    * Replace the random variables in the `.env` file with realistic values that you would use for the project, check the [database file](database.json) and copy the values for a quick set up. Modify them as you please.
 
 1. Now to create the databases. I'll use the `database.json` file for the values. Follow along with these commands.
     ```bash
@@ -118,17 +113,6 @@ paste the link that is logged on your console. Create a user, by going to this e
 * Click the collection, and head to the **Authorization** tab as seen in the picture above. 
 * Select the type to be **Bearer token** and paste the token in the space given, excluding the quotes (**\"**, **\"**);
 
-> ### Whew! You're Done!
-
-> ### Now you can check the endpoints to test the functionality first hand! 
-
->> ## **Routes to try out**
-| METHOD | ROUTE                                        | FUNCTION                                                     |
-| :----- | --------------------------------------------:| ------------------------------------------------------------:|
-| GET    | `/users`, `/orders`, `/products`             | Displays all the items in the respective routes              |
-| GET    | `/users/:id`, `/orders/:id`, `/products/:id` | Displays a row in the database table specified with the `id` |
-| GET    | `/auth`                                      | Authenticates the user                                       |
-| POST   | `/users`, `/orders`, `/products`             | Adds values in the body tab to the database                  |
-| DELETE | `/users/:id`, `/orders/:id`, `/products/:id` | Deletes a row from the database using the id in the parameter|
+That's it, now you can checkout the endpoints and try them out [here](Requirements.md)
 
 ### **ENJOY !** 🤓

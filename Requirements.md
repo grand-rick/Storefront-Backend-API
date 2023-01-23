@@ -37,4 +37,13 @@ These are the notes from a meeting with the frontend developer that describe wha
 - id of each product in the order
 - quantity of each product in the order
 - user_id
-- status of order (active or complete)
+- status of order (active or complete) 
+
+> ## **Routes to try out**
+| METHOD | ROUTE                                        | FUNCTION                                                     |
+| :----- | --------------------------------------------:| ------------------------------------------------------------:|
+| GET    | `/users`, `/orders`, `/products`             | Displays all the items in the respective routes              |
+| GET    | `/users/:id`, `/orders/:id`, `/products/:id` | Displays a row in the database table specified with the `id` |
+| GET    | `/auth`                                      | Authenticates the user                                       |
+| POST   | `/users`, `/orders`, `/products`             | Adds values in the body tab to the database                  |
+| DELETE | `/users/:id`, `/orders/:id`, `/products/:id` | Deletes a row from the database using the id in the parameter|
