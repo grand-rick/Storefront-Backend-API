@@ -22,22 +22,28 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 ## Data Shapes
 #### Product
--  id
-- name
-- price
+| Column | Type                 |
+|:------ | --------------------:|
+|id      | integer              |
+|name    | character varying(50)|
+|price   | character varying(50)|
 
 #### User
-- id
-- firstName
-- lastName
-- password
+| Column      | Type                 |
+|:----------- | --------------------:|
+|id           | integer              |
+|first_name   | character varying(50)|
+|last_name    | character varying(50)|
+|hash_password| text                 |
 
 #### Orders
-- id
-- id of each product in the order
-- quantity of each product in the order
-- user_id
-- status of order (active or complete) 
+| Column          | Type                 |
+|:--------------- | --------------------:|
+|id               | integer              |
+|status           | character varying(64)| 
+|product_quantity | bigint               |
+|product_id       | integer              |
+|user_id          | integer              |
 
 > ## **Routes to try out**
 | METHOD | ROUTE                                        | FUNCTION                                                     |
@@ -47,3 +53,6 @@ These are the notes from a meeting with the frontend developer that describe wha
 | GET    | `/auth`                                      | Authenticates the user                                       |
 | POST   | `/users`, `/orders`, `/products`             | Adds values in the body tab to the database                  |
 | DELETE | `/users/:id`, `/orders/:id`, `/products/:id` | Deletes a row from the database using the id in the parameter|
+| GET    | `/products_in_orders`                        | Displays all the products in the orders sorted by the order id  |
+| GET    | `/expensive_products`                        | Displays the top five most expensive orders, from most expensive|
+| GET    | `/users_with_active_orders`                  | Displays all users whose orders are active                      |
