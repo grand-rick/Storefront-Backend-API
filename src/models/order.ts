@@ -98,4 +98,15 @@ export default class OrderStore {
 			throw new Error(`Unable to add new Order. Error${err}`);
 		}
 	}
+	async deleteProduct(productId: string): Promise<string> {
+		try {
+			const sql = 'DELETE FROM order_products WHERE product_id = $1';
+			const conn = await db.connect();
+			await conn.query(sql, [productId]);
+			conn.release();
+			return 'Deleted';
+		} catch (err) {
+			throw new Error(`Unable to delete product in orders`);
+		}
+	}
 }
