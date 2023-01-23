@@ -66,13 +66,24 @@ const addProduct = async (req: Request, res: Response) => {
 		res.json(err);
 	}
 };
+const deleteProduct = async (req: Request, res: Response) => {
+	const productId = req.body.productId;
+	try {
+		const deletedProduct = await store.deleteProduct(productId);
+		res.json(deletedProduct);
+	} catch (err) {
+		res.status(400);
+		res.json(err);
+	}
+};
 
 const ordersRoutes = (app: express.Application) => {
 	app.post('/orders', verifyAuthToken, create);
-	app.get('/orders', index);
-	app.get('/orders/:id', show);
-	app.delete('/orders/:id', destroy);
-	app.post('/orders/:id/products', addProduct);
+	app.get('/orders', verifyAuthToken, index);
+	app.get('/orders/:id', verifyAuthToken, show);
+	app.delete('/orders/:id', verifyAuthToken, destroy);
+	app.post('/orders/:id/products', verifyAuthToken, addProduct);
+	app.delete('/orders/:id/products', verifyAuthToken, deleteProduct);
 };
 
 export default ordersRoutes;
