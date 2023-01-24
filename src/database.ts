@@ -5,6 +5,7 @@ dotenv.config();
 
 const {
 	POSTGRES_HOST,
+	POSTGRES_PORT,
 	POSTGRES_DB,
 	POSTGRES_TEST_DB,
 	POSTGRES_USER,
@@ -22,6 +23,7 @@ if (ENV === 'test') {
 		database: POSTGRES_TEST_DB,
 		user: POSTGRES_USER,
 		password: POSTGRES_PASSWORD,
+		port: parseInt(POSTGRES_PORT as unknown as string)
 	});
 }
 
@@ -31,6 +33,7 @@ if (ENV === 'dev') {
 		database: POSTGRES_DB,
 		user: POSTGRES_USER,
 		password: POSTGRES_PASSWORD,
+		port: parseInt(POSTGRES_PORT as unknown as string)
 	});
 }
 
