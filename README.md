@@ -35,6 +35,8 @@ To use the API, follow the steps below.
 
 1. >>**THE Server IS RUNNING ON `http://localhost:5000`**
 
+1. Use the `.env.example` to create a `.env` file with your own values for sensitive info and some from the `database.json` file.
+
 1. **Creating user**
     ```postgres
     CREATE USER store_manager WITH PASSWORD 'password123';
