@@ -4,7 +4,7 @@ export default class DashboardQueries {
 	// Get all products that have been included in orders
 	async productsInOrders(): Promise<
 		{ name: string; price: number; order_id: string }[]
-	> {
+		> {
 		try {
 			const conn = await db.connect();
 			const sql =
@@ -23,7 +23,7 @@ export default class DashboardQueries {
 	// It returns the top five most expensive products in the database
 	async topFiveExpensiveProducts(): Promise<
 		{ name: string; price: number }[]
-	> {
+		> {
 		try {
 			const conn = await db.connect();
 			const sql =
@@ -42,7 +42,7 @@ export default class DashboardQueries {
 	// We're getting all the users who have completed orders
 	async usersWithActiveOrders(): Promise<
 		{ username: string; order_id: string }[]
-	> {
+		> {
 		try {
 			const conn = await db.connect();
 			const sql =

@@ -83,7 +83,7 @@ describe('Order Model', () => {
 
 	it('deleteProduct method should delete products in orders', async () => {
 		const result = await store.deleteProduct('4');
-		expect(result).toEqual('Deleted')
+		expect(result).toEqual('Deleted');
 	});
 
 	it('delete method should remove the order', async () => {

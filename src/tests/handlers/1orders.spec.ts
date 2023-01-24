@@ -31,8 +31,8 @@ const order: Order = {
 
 const orderToken = jwt.sign({ user }, TOKEN_SECRET);
 
-describe("Testing the order model's route-handler functions", () => {
-	it(`POST /order should add a new order`, async () => {
+describe('Testing the order model\'s route-handler functions', () => {
+	it('POST /order should add a new order', async () => {
 		const createUserResponse = await request
 			.post('/users')
 			.set('Authorization', `Bearer ${orderToken}`)
@@ -50,21 +50,21 @@ describe("Testing the order model's route-handler functions", () => {
 		expect(response.status).toEqual(200);
 	});
 
-	it(`GET /orders should show a list of all orders`, async () => {
+	it('GET /orders should show a list of all orders', async () => {
 		const response = await request
 			.get('/orders')
 			.set('Authorization', `Bearer ${orderToken}`);
 		expect(response.status).toEqual(200);
 	});
 
-	it(`GET /orders/:id should show an order with the id`, async () => {
+	it('GET /orders/:id should show an order with the id', async () => {
 		const response = await request
 			.get('/orders/1')
 			.set('Authorization', `Bearer ${orderToken}`);
 		expect(response.status).toEqual(200);
 	});
 
-	it(`POST /orders/:id/products should track products, their quantities in active orders`, async () => {
+	it('POST /orders/:id/products should track products, their quantities in active orders', async () => {
 		const orderProducts = {
 			quantity: '30',
 			orderId: '1',
@@ -77,7 +77,7 @@ describe("Testing the order model's route-handler functions", () => {
 		expect(response.status).toEqual(200);
 	});
 
-	it(`DELETE /orders/:id/products should delete products, their quantities in active orders`, async () => {
+	it('DELETE /orders/:id/products should delete products, their quantities in active orders', async () => {
 		const orderProducts = {
 			productId: '1'
 		};
@@ -88,7 +88,7 @@ describe("Testing the order model's route-handler functions", () => {
 		expect(response.status).toEqual(200);
 	});
 
-	it(`DELETE /orders/:id should remove the order with the specified id`, async () => {
+	it('DELETE /orders/:id should remove the order with the specified id', async () => {
 		const response = await request
 			.delete('/orders/1')
 			.set('Authorization', `Bearer ${orderToken}`);

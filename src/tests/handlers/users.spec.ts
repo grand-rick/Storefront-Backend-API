@@ -18,7 +18,7 @@ const user: User = {
 	hash_password: 'Password123',
 };
 
-describe("Testing the user model's route-handler functions", () => {
+describe('Testing the user model\'s route-handler functions', () => {
 	it('POST /users should add a new user', async () => {
 		token = jwt.sign({ user }, TOKEN_SECRET);
 

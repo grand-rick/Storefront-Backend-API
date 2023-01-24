@@ -106,7 +106,7 @@ export default class OrderStore {
 			conn.release();
 			return 'Deleted';
 		} catch (err) {
-			throw new Error(`Unable to delete product in orders`);
+			throw new Error('Unable to delete product in orders');
 		}
 	}
 }
