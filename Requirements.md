@@ -3,6 +3,7 @@ The company stakeholders want to create an online storefront to showcase their g
 
 These are the notes from a meeting with the frontend developer that describe what endpoints the API needs to supply, as well as data shapes the frontend and backend have agreed meet the requirements of the application. 
 
+>>**THE DATABASE IS RUNNING ON `http://localhost:5000`**
 ## API Endpoints
 #### Products
 - Index 
@@ -23,29 +24,23 @@ These are the notes from a meeting with the frontend developer that describe wha
 <!-- - [OPTIONAL] All Active orders by user [token required] -->
 
 ## Data Shapes
-#### Product
-| Column | Type                 |
-|:------ | --------------------:|
-|id      | integer              |
-|name    | character varying(50)|
-|price   | character varying(50)|
 
-#### User
-| Column      | Type                 |
-|:----------- | --------------------:|
-|id           | integer              |
-|first_name   | character varying(50)|
-|last_name    | character varying(50)|
-|hash_password| text                 |
+### **Database Schema**
+![database_schema](images/db_schema.PNG)
+
+>## **TABLES**
+
+#### Products
+![products_schema](images/products_schema.PNG)
+
+#### Users
+![users_schema](images/users_schema.PNG)
 
 #### Orders
-| Column          | Type                 |
-|:--------------- | --------------------:|
-|id               | integer              |
-|status           | character varying(64)| 
-|product_quantity | bigint               |
-|product_id       | integer              |
-|user_id          | integer              |
+![orders_schema](images/orders_schema.PNG)
+
+### Order_products
+![order-products-schema](images/order-products_schema.PNG)
 
 > ## **Routes to try out**
 | METHOD | ROUTE                                        | FUNCTION                                                     |
