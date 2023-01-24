@@ -1,18 +1,19 @@
 {
-    "dev": {
-      "driver": "pg",
-      "host": "127.0.0.1",
-      "database": "store",
-      "user": "store_manager",
-      "password": "password123",
-      "port": "5900"
-    },
-    "test": {
-      "driver": "pg",
-      "host": "127.0.0.1",
-      "database": "store_test",
-      "user": "store_manager",
-      "password": "password123",
-      "port": "5900"
-    }
+  "defaultEnv": {"ENV": "NODE_ENV"},
+  "dev": {
+    "driver": "pg",
+    "host": {"ENV": "POSTGRES_HOST"},
+    "port": {"ENV": "POSTGRES_PORT"},
+    "database": {"ENV": "POSTGRES_DB"},
+    "user": {"ENV": "POSTGRES_USER"},
+    "password": {"ENV": "POSTGRES_PASSWORD"}
+  },
+  "test": {
+    "driver": "pg",
+    "host": {"ENV": "POSTGRES_HOST"},
+    "port": {"ENV": "POSTGRES_PORT"},
+    "database": {"ENV": "POSTGRES_DB"},
+    "user": {"ENV": "POSTGRES_USER"},
+    "password": {"ENV": "POSTGRES_PASSWORD"}
   }
+}
