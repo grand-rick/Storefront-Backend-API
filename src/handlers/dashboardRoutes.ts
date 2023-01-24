@@ -5,18 +5,30 @@ import { verifyAuthToken } from './users';
 const dashboard = new DashboardQueries();
 
 const productsInOrders = async (_req: Request, res: Response) => {
-	const products = await dashboard.productsInOrders();
-	res.json(products);
+	try {
+		const products = await dashboard.productsInOrders();
+		res.json(products);
+	} catch (err) {
+		throw new Error(`Unable to show products in active orders`);
+	}
 };
 
 const topFiveExpensiveProducts = async (_req: Request, res: Response) => {
-	const expensiveProducts = await dashboard.topFiveExpensiveProducts();
-	res.json(expensiveProducts);
+	try {
+		const expensiveProducts = await dashboard.topFiveExpensiveProducts();
+		res.json(expensiveProducts);
+	} catch (err) {
+		throw new Error(`Unable to show expensive products`);
+	}
 };
 
 const usersWithActiveOrders = async (_req: Request, res: Response) => {
-	const users = await dashboard.usersWithActiveOrders();
-	res.json(users);
+	try {
+		const users = await dashboard.usersWithActiveOrders();
+		res.json(users);
+	} catch (err) {
+		throw new Error(`Unable to show users with active orders`);
+	}
 };
 
 const dashboardRoutes = (app: express.Application) => {
