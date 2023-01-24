@@ -33,7 +33,7 @@ To use the API, follow the steps below.
             ```
 1. The `tsconfig.json`, `eslint.json` and `.prettierrc` are already configured for you. Don't worry about that.
 
-1. >>**THE Server IS RUNNING ON `http://localhost:3000`**
+1. **BACKEND PORT = `3000`, DATABASE PORT = `5432`.**
 
 1. Use the `.env.example` to create a `.env` file with your own values for sensitive info and some from the `database.json` file.
 
