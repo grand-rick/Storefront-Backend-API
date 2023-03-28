@@ -60,4 +60,4 @@ To use the API, follow the steps below.
 * You should see this as the results.
     ![Tests successful](images/tests.PNG)
 
-## **The endpoints are listed in** [Requirements.md](Requirements.md)
+## **The endpoints are listed** [here](Requirements.md)
