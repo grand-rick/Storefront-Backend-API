@@ -52,9 +52,10 @@ To use the API, follow the steps below.
     GRANT ALL PRIVILEGES ON DATABASE store_test TO store_manager;
     ```
 ## **Step 2 - Running the tests**
-* This will be simple, simply run the command below and watch.
+* This will be simple, just run the command below and watch.
     ```bash
-    npm run test
+    npm run test // FOR NPM
+    yarn test //FOR YARN
     ```
 * You should see this as the results.
     ![Tests successful](images/tests.PNG)
